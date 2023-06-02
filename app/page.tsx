@@ -1,39 +1,30 @@
-import Link from "next/link"
+import Image from "next/image"
 
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { PersonalInfoForm } from "@/components/personal-info-form"
 
 export default function IndexPage() {
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          Beautifully designed components <br className="hidden sm:inline" />
-          built with Radix UI and Tailwind CSS.
-        </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
-        </p>
-      </div>
-      <div className="flex gap-4">
-        <Link
-          href={siteConfig.links.docs}
-          target="_blank"
-          rel="noreferrer"
-          className={buttonVariants()}
-        >
-          Documentation
-        </Link>
-        <Link
-          target="_blank"
-          rel="noreferrer"
-          href={siteConfig.links.github}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          GitHub
-        </Link>
-      </div>
+    <section className="container grid flex-1 items-center justify-center">
+      <Card>
+        <CardContent className="flex p-4">
+          <Image
+            src={"/bg-sidebar-desktop.svg"}
+            width={274}
+            height={568}
+            alt="bg-sidebar-desktop"
+          ></Image>
+          <div className="p-form flex flex-col space-y-8">
+            <div>
+              <h1>Personal info</h1>
+              <p className="text-sm text-muted">
+                Please provide your name, email address and phone number.
+              </p>
+            </div>
+            <PersonalInfoForm />
+          </div>
+        </CardContent>
+      </Card>
     </section>
   )
 }

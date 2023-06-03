@@ -49,7 +49,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider>
             <div className="relative flex min-h-screen flex-col">
               <section className="container grid flex-1 items-center justify-center">
-                <Card>
+                <Card className="lg:w-[908px]">
                   <CardContent className="flex p-4">
                     <div className="relative">
                       <Image

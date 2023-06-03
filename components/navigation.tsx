@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
@@ -41,15 +42,16 @@ export default function Navigation() {
       <ul className="space-y-6 text-sm text-primary-foreground">
         {navItems.map((item, index) => (
           <li key={item.title} className="flex items-center gap-3">
-            <span
+            <Link
               className={cn(
                 "flex h-9 w-9 items-center justify-center rounded-full border font-bold",
                 item.active &&
                   "border-secondary bg-secondary text-secondary-foreground"
               )}
+              href={item.href}
             >
               {index + 1}
-            </span>
+            </Link>
             <div className="flex flex-col uppercase">
               <span className="text-xs font-thin">Step {index + 1}</span>
               <span className="font-semibold tracking-wider">{item.title}</span>

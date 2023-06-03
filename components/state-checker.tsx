@@ -27,8 +27,8 @@ export default function StateChecker({ children }: StateCheckerProps) {
         description: "You need to fill in the form before proceeding",
         duration: 5000,
       })
+      router.push("/")
     }
-    router.push("/")
   }, [firstFormValuesSet, router, toast])
 
   return <>{firstFormValuesSet && <>{children}</>}</>

@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { atom, useAtom } from "jotai"
+import { useAtom } from "jotai"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { lengthError, requiredError } from "@/lib/errorMessages"
+import { formAtom, formSchema } from "@/lib/form-data"
 import {
   Form,
   FormControl,
@@ -17,41 +17,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 
+import ButtonGroup from "./button-group"
 import { Button } from "./ui/button"
-
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(1, {
-      message: requiredError,
-    })
-    .max(50, {
-      message: lengthError({ max: 50 }),
-    }),
-  email: z
-    .string()
-    .min(1, {
-      message: requiredError,
-    })
-    .email(),
-  phone: z
-    .string()
-    .min(1, {
-      message: requiredError,
-    })
-    .min(10, {
-      message: lengthError({ min: 10 }),
-    })
-    .max(12, {
-      message: lengthError({ max: 12 }),
-    }),
-})
-
-const formAtom = atom({
-  name: "",
-  email: "",
-  phone: "",
-})
 
 export const PersonalInfoForm = () => {
   const [formValues, setFormValues] = useAtom(formAtom)
@@ -126,9 +93,13 @@ export const PersonalInfoForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="ml-auto mt-auto">
-          Next step
-        </Button>
+        <ButtonGroup
+          nextButton={
+            <Button className="ml-auto" type="submit">
+              Next step
+            </Button>
+          }
+        ></ButtonGroup>
       </form>
     </Form>
   )

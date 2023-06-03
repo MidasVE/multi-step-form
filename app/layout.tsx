@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-head-element */
 import "@/styles/globals.css"
 import { Metadata } from "next"
 import Image from "next/image"
@@ -6,6 +7,7 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
+import { Toaster } from "@/components/ui/toaster"
 import Navigation from "@/components/navigation"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -67,6 +69,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 </Card>
               </section>
             </div>
+            <Toaster />
             <TailwindIndicator />
           </ThemeProvider>
         </body>

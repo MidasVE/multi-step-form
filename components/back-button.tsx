@@ -6,7 +6,11 @@ import { Button } from "./ui/button"
 
 function BackButton() {
   const router = useRouter()
-  return <Button onClick={() => router.push("/")}>Go Back</Button>
+  return (
+    <Button variant="ghost" onClick={() => router.push("/")}>
+      Go Back
+    </Button>
+  )
 }
 
 export default BackButton

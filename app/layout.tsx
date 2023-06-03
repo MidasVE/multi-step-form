@@ -60,7 +60,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         <Navigation />
                       </div>
                     </div>
-                    <div className="flex flex-col space-y-8 px-[100px] py-8">
+                    <div className="flex flex-col space-y-8 px-[100px] pb-4 pt-12">
                       {children}
                     </div>
                   </CardContent>

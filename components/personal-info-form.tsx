@@ -6,22 +6,45 @@ import { atom, useAtom } from "jotai"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
+import { lengthError, requiredError } from "@/lib/errorMessages"
 import {
   Form,
   FormControl,
   FormField,
+  FormInput,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 
 import { Button } from "./ui/button"
 
 const formSchema = z.object({
-  name: z.string().min(2).max(50),
-  email: z.string().email(),
-  phone: z.string().min(10).max(12),
+  name: z
+    .string()
+    .min(1, {
+      message: requiredError,
+    })
+    .max(50, {
+      message: lengthError({ max: 50 }),
+    }),
+  email: z
+    .string()
+    .min(1, {
+      message: requiredError,
+    })
+    .email(),
+  phone: z
+    .string()
+    .min(1, {
+      message: requiredError,
+    })
+    .min(10, {
+      message: lengthError({ min: 10 }),
+    })
+    .max(12, {
+      message: lengthError({ max: 12 }),
+    }),
 })
 
 const formAtom = atom({
@@ -49,18 +72,20 @@ export const PersonalInfoForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-1 flex-col gap-4"
+        className="flex flex-1 flex-col gap-6"
       >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>Name</FormLabel>
+                <FormMessage />
+              </div>
               <FormControl>
-                <Input placeholder="e.g Stephen King" {...field} />
+                <FormInput placeholder="e.g Stephen King" {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -69,11 +94,16 @@ export const PersonalInfoForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email Address</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>Email Address</FormLabel>
+                <FormMessage />
+              </div>
               <FormControl>
-                <Input placeholder="e.g. stephenking@lorem.com" {...field} />
+                <FormInput
+                  placeholder="e.g. stephenking@lorem.com"
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -82,15 +112,17 @@ export const PersonalInfoForm = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone Number</FormLabel>
+              <div className="flex items-center justify-between">
+                <FormLabel>Phone Number</FormLabel>
+                <FormMessage />
+              </div>
               <FormControl>
-                <Input
+                <FormInput
                   placeholder="e.g +1 234 567 890"
                   {...field}
                   type={"tel"}
                 />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />

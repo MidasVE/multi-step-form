@@ -13,6 +13,8 @@ import {
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
 
+import { Input } from "./input"
+
 const Form = FormProvider
 
 type FormFieldContextValue<
@@ -88,15 +90,10 @@ const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField()
+  const { formItemId } = useFormField()
 
   return (
-    <Label
-      ref={ref}
-      className={cn(error && "text-destructive", className)}
-      htmlFor={formItemId}
-      {...props}
-    />
+    <Label ref={ref} className={className} htmlFor={formItemId} {...props} />
   )
 })
 FormLabel.displayName = "FormLabel"
@@ -164,6 +161,23 @@ const FormMessage = React.forwardRef<
 })
 FormMessage.displayName = "FormMessage"
 
+const FormInput = React.forwardRef<
+  HTMLInputElement,
+  React.ComponentPropsWithoutRef<"input">
+>(({ className, ...props }, ref) => {
+  const { error, formItemId } = useFormField()
+
+  return (
+    <Input
+      ref={ref}
+      id={formItemId}
+      className={cn(className, error && "border-destructive")}
+      {...props}
+    />
+  )
+})
+FormInput.displayName = "FormInput"
+
 export {
   useFormField,
   Form,
@@ -172,5 +186,6 @@ export {
   FormControl,
   FormDescription,
   FormMessage,
+  FormInput,
   FormField,
 }

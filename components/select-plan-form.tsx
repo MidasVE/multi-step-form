@@ -37,12 +37,7 @@ export default function SelectPlanForm() {
       plan: values.plan,
       yearlyBilling: values.yearlyBilling,
     })
-
-    console.log({
-      ...rest,
-      plan: values.plan,
-      yearlyBilling: values.yearlyBilling,
-    })
+    router.push("/add-ons")
   }
 
   return (

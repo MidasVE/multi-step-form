@@ -44,4 +44,12 @@ export const selectPlanFormSchema = z.object({
   yearlyBilling: z.boolean().optional(),
 })
 
-export const formSchema = personalInfoFormSchema.merge(selectPlanFormSchema)
+export const addOnsFormSchema = z.object({
+  onlineService: z.boolean().optional(),
+  largerStorage: z.boolean().optional(),
+  customizableProfile: z.boolean().optional(),
+})
+
+export const formSchema = personalInfoFormSchema
+  .merge(selectPlanFormSchema)
+  .merge(addOnsFormSchema)

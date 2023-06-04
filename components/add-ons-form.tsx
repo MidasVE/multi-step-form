@@ -67,7 +67,7 @@ export default function AddOnsForm() {
                     field.value && "border-primary bg-background"
                   )}
                 >
-                  <CardContent className="flex items-center gap-6 p-6">
+                  <CardContent className="flex items-center gap-6 p-4">
                     <FormControl>
                       <Checkbox
                         className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
@@ -76,13 +76,15 @@ export default function AddOnsForm() {
                       />
                     </FormControl>
                     <div className="!mt-0 space-y-1">
-                      <span className="font-bold">Online service</span>
+                      <span className="text-base font-bold">
+                        Online service
+                      </span>
                       <FormDescription>
                         Access to multiplayer games
                       </FormDescription>
                     </div>
-                    <span className="ml-auto text-base text-accent">
-                      + €1/mo
+                    <span className="ml-auto text-accent">
+                      {rest.yearlyBilling ? "+ €10/yr" : "+ €1/mo"}
                     </span>
                   </CardContent>
                 </Card>
@@ -102,7 +104,7 @@ export default function AddOnsForm() {
                     field.value && "border-primary bg-background"
                   )}
                 >
-                  <CardContent className="flex items-center gap-6 p-6">
+                  <CardContent className="flex items-center gap-6 p-4">
                     <FormControl>
                       <Checkbox
                         className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
@@ -111,11 +113,13 @@ export default function AddOnsForm() {
                       />
                     </FormControl>
                     <div className="!mt-0 space-y-1">
-                      <span className="font-bold">Larger storage</span>
+                      <span className="text-base font-bold">
+                        Larger storage
+                      </span>
                       <FormDescription>Extra 1TB of cloud save</FormDescription>
                     </div>
-                    <span className="ml-auto text-base text-accent">
-                      + €2/mo
+                    <span className="ml-auto text-accent">
+                      {rest.yearlyBilling ? "+ €20/yr" : "+ €2/mo"}
                     </span>
                   </CardContent>
                 </Card>
@@ -135,7 +139,7 @@ export default function AddOnsForm() {
                     field.value && "border-primary bg-background"
                   )}
                 >
-                  <CardContent className="flex items-center gap-6 p-6">
+                  <CardContent className="flex items-center gap-6 p-4">
                     <FormControl>
                       <Checkbox
                         className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
@@ -144,13 +148,15 @@ export default function AddOnsForm() {
                       />
                     </FormControl>
                     <div className="!mt-0 space-y-1">
-                      <span className="font-bold">Customizable profile</span>
+                      <span className="text-base font-bold">
+                        Customizable profile
+                      </span>
                       <FormDescription>
                         Custom theme on your profile
                       </FormDescription>
                     </div>
-                    <span className="ml-auto text-base text-accent">
-                      + €2/mo
+                    <span className="ml-auto text-accent">
+                      {rest.yearlyBilling ? "+ €20/yr" : "+ €20/mo"}
                     </span>
                   </CardContent>
                 </Card>

@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -21,7 +20,6 @@ import { Switch } from "./ui/switch"
 
 export default function SelectPlanForm() {
   const [{ plan, yearlyBilling, ...rest }, setFormValues] = useAtom(formAtom)
-  const [yearlyBillingValue, setYearlyBillingValue] = useState(false)
   const router = useRouter()
   const form = useForm<z.infer<typeof selectPlanFormSchema>>({
     resolver: zodResolver(selectPlanFormSchema),
@@ -31,7 +29,10 @@ export default function SelectPlanForm() {
     },
   })
 
+  const yearlyBillingValue = form.watch("yearlyBilling")
+
   const onSubmit = (values: z.infer<typeof selectPlanFormSchema>) => {
+    console.log(values)
     setFormValues({
       ...rest,
       plan: values.plan,
@@ -170,10 +171,7 @@ export default function SelectPlanForm() {
               <FormControl>
                 <Switch
                   defaultChecked={field.value}
-                  onCheckedChange={() => {
-                    field.onChange(field.value)
-                    setYearlyBillingValue(!yearlyBillingValue)
-                  }}
+                  onCheckedChange={field.onChange}
                   className="!mt-0"
                 />
               </FormControl>

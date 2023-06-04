@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useAtomValue } from "jotai"
 
-import { formAtom } from "@/lib/form-data"
+import { formAtom } from "@/lib/atoms"
 
 import { useToast } from "./ui/use-toast"
 
@@ -27,9 +27,11 @@ export default function StateChecker({ children }: StateCheckerProps) {
         description: "You need to fill in the form before proceeding",
         duration: 5000,
       })
-      router.push("/")
+      // router.push("/")
     }
   }, [firstFormValuesSet, router, toast])
+
+  return <>{children}</>
 
   return <>{firstFormValuesSet && <>{children}</>}</>
 }

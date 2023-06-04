@@ -6,7 +6,8 @@ import { useAtom } from "jotai"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { formAtom, formSchema } from "@/lib/form-data"
+import { formAtom } from "@/lib/atoms"
+import { personalInfoFormSchema } from "@/lib/form-schema"
 import {
   Form,
   FormControl,
@@ -21,16 +22,18 @@ import ButtonGroup from "./button-group"
 import { Button } from "./ui/button"
 
 export const PersonalInfoForm = () => {
-  const [formValues, setFormValues] = useAtom(formAtom)
+  const [{ name, email, phone }, setFormValues] = useAtom(formAtom)
   const router = useRouter()
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof personalInfoFormSchema>>({
+    resolver: zodResolver(personalInfoFormSchema),
     defaultValues: {
-      ...formValues,
+      name,
+      email,
+      phone,
     },
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof personalInfoFormSchema>) => {
     setFormValues(values)
     router.push("/select-plan")
   }

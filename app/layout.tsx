@@ -62,7 +62,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         <Navigation />
                       </div>
                     </div>
-                    <div className="flex flex-col space-y-8 px-[100px] pb-4 pt-12">
+                    <div className="flex flex-1 flex-col space-y-8 px-20 pb-4 pt-12">
                       {children}
                     </div>
                   </CardContent>

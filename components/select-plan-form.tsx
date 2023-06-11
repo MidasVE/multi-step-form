@@ -125,7 +125,7 @@ export default function SelectPlanForm() {
         />
 
         <ButtonGroup
-          backButton={<BackButton />}
+          backButton={<BackButton path={"/"} />}
           nextButton={<Button type="submit">Next step</Button>}
         />
       </form>

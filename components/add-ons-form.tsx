@@ -98,7 +98,7 @@ export default function AddOnsForm() {
         ))}
 
         <ButtonGroup
-          backButton={<BackButton />}
+          backButton={<BackButton path={"/select-plan"} />}
           nextButton={<Button type="submit">Next step</Button>}
         />
       </form>

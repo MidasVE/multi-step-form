@@ -74,8 +74,9 @@ export default function Summary() {
           € {total(form.yearlyBilling)} /{form.yearlyBilling ? "yr" : "mo"}
         </span>
       </div>
+      <div className="flex-1"></div>
       <ButtonGroup
-        backButton={<BackButton />}
+        backButton={<BackButton path="/add-ons" />}
         nextButton={<Button type="submit">Submit</Button>}
       />
     </>

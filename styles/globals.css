@@ -8,7 +8,7 @@
     --foreground: 213 93% 17%;
 
     --muted: 220 2% 64%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 213 93% 17%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 213 93% 17%;
@@ -26,7 +26,7 @@
     --secondary-foreground: 213 93% 17%;
 
     --accent: 243 100% 62%;
-    --accent-foreground: 213 93% 17%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
@@ -88,10 +88,6 @@
   input:-webkit-autofill,
   input:-webkit-autofill:focus {
     transition: background-color 600000s 0s, color 600000s 0s;
-  }
-
-  .check-card {
-    @apply border cursor-pointer hover:border-primary;
   }
 
   input[checked] + .check-card {

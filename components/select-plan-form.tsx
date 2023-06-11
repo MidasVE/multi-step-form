@@ -69,7 +69,7 @@ export default function SelectPlanForm() {
                             id={key}
                           />
                         </FormControl>
-                        <Card className="check-card">
+                        <Card className="cursor-pointer border hover:border-primary">
                           <CardContent className="p-4">
                             <Image
                               src={`/icon-${key}.svg`}

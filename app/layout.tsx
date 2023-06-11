@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
+    shortcut: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
   },
 }
@@ -56,6 +56,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                         src={"/bg-sidebar-desktop.svg"}
                         width={274}
                         height={568}
+                        priority
                         alt="bg-sidebar-desktop"
                       ></Image>
                       <div className="absolute inset-0 px-8 py-10">

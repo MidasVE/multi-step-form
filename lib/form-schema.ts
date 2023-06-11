@@ -41,7 +41,7 @@ export const personalInfoFormSchema = z.object({
 
 export const selectPlanFormSchema = z.object({
   plan: z.enum(["arcade", "advanced", "pro"]).optional(),
-  yearlyBilling: z.boolean().optional(),
+  yearlyBilling: z.boolean(),
 })
 
 export const addOnsFormSchema = z.object({

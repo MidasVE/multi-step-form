@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { addOnPricing } from "@/data/price-maps"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAtom } from "jotai"
 import { useForm } from "react-hook-form"
@@ -55,115 +56,47 @@ export default function AddOnsForm() {
         className="flex flex-1 flex-col gap-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <FormField
-          control={form.control}
-          name="onlineService"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="cursor-pointer">
-                <Card
-                  className={cn(
-                    "border hover:border-primary",
-                    field.value && "border-primary bg-background"
-                  )}
-                >
-                  <CardContent className="flex items-center gap-6 p-4">
-                    <FormControl>
-                      <Checkbox
-                        className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="!mt-0 space-y-1">
-                      <span className="text-base font-bold">
-                        Online service
+        {Array.from(addOnPricing.entries()).map(([key, value]) => (
+          <FormField
+            control={form.control}
+            name={key}
+            key={key}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="cursor-pointer">
+                  <Card
+                    className={cn(
+                      "border hover:border-primary",
+                      field.value && "border-primary bg-background/50"
+                    )}
+                  >
+                    <CardContent className="flex items-center gap-6 p-4">
+                      <FormControl>
+                        <Checkbox
+                          className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="!mt-0 space-y-1">
+                        <span className="text-base font-bold">
+                          {value.name}
+                        </span>
+                        <FormDescription>{value.description}</FormDescription>
+                      </div>
+                      <span className="ml-auto text-accent">
+                        {rest.yearlyBilling
+                          ? `+ €${value.price.yearly}/yr`
+                          : `+ €${value.price.monthly}/mo`}
                       </span>
-                      <FormDescription>
-                        Access to multiplayer games
-                      </FormDescription>
-                    </div>
-                    <span className="ml-auto text-accent">
-                      {rest.yearlyBilling ? "+ €10/yr" : "+ €1/mo"}
-                    </span>
-                  </CardContent>
-                </Card>
-              </FormLabel>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="largerStorage"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="cursor-pointer">
-                <Card
-                  className={cn(
-                    "border hover:border-primary",
-                    field.value && "border-primary bg-background"
-                  )}
-                >
-                  <CardContent className="flex items-center gap-6 p-4">
-                    <FormControl>
-                      <Checkbox
-                        className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="!mt-0 space-y-1">
-                      <span className="text-base font-bold">
-                        Larger storage
-                      </span>
-                      <FormDescription>Extra 1TB of cloud save</FormDescription>
-                    </div>
-                    <span className="ml-auto text-accent">
-                      {rest.yearlyBilling ? "+ €20/yr" : "+ €2/mo"}
-                    </span>
-                  </CardContent>
-                </Card>
-              </FormLabel>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="customizableProfile"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="cursor-pointer">
-                <Card
-                  className={cn(
-                    "border hover:border-primary",
-                    field.value && "border-primary bg-background"
-                  )}
-                >
-                  <CardContent className="flex items-center gap-6 p-4">
-                    <FormControl>
-                      <Checkbox
-                        className="border-accent data-[state=checked]:border-accent data-[state=checked]:bg-accent"
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="!mt-0 space-y-1">
-                      <span className="text-base font-bold">
-                        Customizable profile
-                      </span>
-                      <FormDescription>
-                        Custom theme on your profile
-                      </FormDescription>
-                    </div>
-                    <span className="ml-auto text-accent">
-                      {rest.yearlyBilling ? "+ €20/yr" : "+ €20/mo"}
-                    </span>
-                  </CardContent>
-                </Card>
-              </FormLabel>
-            </FormItem>
-          )}
-        />
+                    </CardContent>
+                  </Card>
+                </FormLabel>
+              </FormItem>
+            )}
+          />
+        ))}
+
         <ButtonGroup
           backButton={<BackButton />}
           nextButton={<Button type="submit">Next step</Button>}

@@ -10,6 +10,7 @@ import { z } from "zod"
 import { formAtom } from "@/lib/atoms"
 import { selectPlanFormSchema } from "@/lib/form-schema"
 
+import { planPricing } from "../data/price-maps"
 import BackButton from "./back-button"
 import ButtonGroup from "./button-group"
 import { Button } from "./ui/button"
@@ -32,7 +33,6 @@ export default function SelectPlanForm() {
   const yearlyBillingValue = form.watch("yearlyBilling")
 
   const onSubmit = (values: z.infer<typeof selectPlanFormSchema>) => {
-    console.log(values)
     setFormValues({
       ...rest,
       plan: values.plan,
@@ -59,102 +59,44 @@ export default function SelectPlanForm() {
                   defaultValue={field.value}
                   className="grid grid-cols-1 gap-6 lg:grid-cols-3"
                 >
-                  <FormItem>
-                    <FormLabel htmlFor="arcade">
-                      <FormControl>
-                        <RadioGroupItem
-                          className="sr-only"
-                          value="arcade"
-                          id="arcade"
-                        />
-                      </FormControl>
-                      <Card className="check-card">
-                        <CardContent className="p-4">
-                          <Image
-                            src="/icon-arcade.svg"
-                            width={40}
-                            height={40}
-                            alt="icon-arcade"
+                  {Array.from(planPricing.entries()).map(([key, value]) => (
+                    <FormItem key={key}>
+                      <FormLabel htmlFor={key}>
+                        <FormControl>
+                          <RadioGroupItem
+                            className="sr-only"
+                            value={key}
+                            id={key}
                           />
-                          <div className="flex flex-col gap-2 pt-8">
-                            <span className="font-bold">Arcade</span>
-                            {yearlyBillingValue ? (
-                              <>
-                                <span className="text-muted">€90/yr</span>
-                                <span>2 months free</span>
-                              </>
-                            ) : (
-                              <span className="text-muted">€9/mo</span>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem>
-                    <FormLabel htmlFor="advanced">
-                      <FormControl>
-                        <RadioGroupItem
-                          className="sr-only"
-                          value="advanced"
-                          id="advanced"
-                        />
-                      </FormControl>
-                      <Card className="check-card">
-                        <CardContent className="p-4">
-                          <Image
-                            src="/icon-advanced.svg"
-                            width={40}
-                            height={40}
-                            alt="icon-advanced"
-                          />
-                          <div className="flex flex-col gap-2 pt-8">
-                            <span className="font-bold">Advanced</span>
-                            {yearlyBillingValue ? (
-                              <>
-                                <span className="text-muted">€120/yr</span>
-                                <span>2 months free</span>
-                              </>
-                            ) : (
-                              <span className="text-muted">€12/mo</span>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem>
-                    <FormLabel htmlFor="pro">
-                      <FormControl>
-                        <RadioGroupItem
-                          className="sr-only"
-                          value="pro"
-                          id="pro"
-                        />
-                      </FormControl>
-                      <Card className="check-card">
-                        <CardContent className="p-4">
-                          <Image
-                            src="/icon-pro.svg"
-                            width={40}
-                            height={40}
-                            alt="icon-pro"
-                          />
-                          <div className="flex flex-col gap-2 pt-8">
-                            <span className="font-bold">Pro</span>
-                            {yearlyBillingValue ? (
-                              <>
-                                <span className="text-muted">€150/yr</span>
-                                <span>2 months free</span>
-                              </>
-                            ) : (
-                              <span className="text-muted">€15/mo</span>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </FormLabel>
-                  </FormItem>
+                        </FormControl>
+                        <Card className="check-card">
+                          <CardContent className="p-4">
+                            <Image
+                              src={`/icon-${key}.svg`}
+                              width={40}
+                              height={40}
+                              alt={key}
+                            />
+                            <div className="flex flex-col gap-2 pt-8">
+                              <span className="font-bold">{value.name}</span>
+                              {yearlyBillingValue ? (
+                                <>
+                                  <span className="text-muted">
+                                    €{value.price.yearly}/yr
+                                  </span>
+                                  <span>2 months free</span>
+                                </>
+                              ) : (
+                                <span className="text-muted">
+                                  €{value.price.monthly}/mo
+                                </span>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </FormLabel>
+                    </FormItem>
+                  ))}
                 </RadioGroup>
               </FormControl>
             </FormItem>
@@ -164,7 +106,7 @@ export default function SelectPlanForm() {
           control={form.control}
           name="yearlyBilling"
           render={({ field }) => (
-            <FormItem className="flex w-full items-baseline justify-center gap-4 rounded-xl bg-background pb-3 pt-2">
+            <FormItem className="flex w-full items-baseline justify-center gap-4 rounded-xl bg-background/50 pb-3 pt-2">
               <FormLabel className={yearlyBillingValue ? "text-muted" : ""}>
                 Monthly
               </FormLabel>

@@ -1,9 +1,8 @@
 import AddOnsForm from "@/components/add-ons-form"
-import StateChecker from "@/components/state-checker"
 
 export default function Page() {
   return (
-    <StateChecker>
+    <>
       <div>
         <h1>Pick add-ons</h1>
         <p className="text-sm text-muted">
@@ -11,6 +10,6 @@ export default function Page() {
         </p>
       </div>
       <AddOnsForm />
-    </StateChecker>
+    </>
   )
 }

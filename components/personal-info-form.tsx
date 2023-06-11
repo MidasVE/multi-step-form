@@ -22,7 +22,7 @@ import ButtonGroup from "./button-group"
 import { Button } from "./ui/button"
 
 export const PersonalInfoForm = () => {
-  const [{ name, email, phone }, setFormValues] = useAtom(formAtom)
+  const [{ name, email, phone, ...rest }, setFormValues] = useAtom(formAtom)
   const router = useRouter()
   const form = useForm<z.infer<typeof personalInfoFormSchema>>({
     resolver: zodResolver(personalInfoFormSchema),
@@ -34,7 +34,10 @@ export const PersonalInfoForm = () => {
   })
 
   const onSubmit = (values: z.infer<typeof personalInfoFormSchema>) => {
-    setFormValues(values)
+    setFormValues({
+      ...rest,
+      ...values,
+    })
     router.push("/select-plan")
   }
 

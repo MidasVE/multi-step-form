@@ -9,7 +9,7 @@ const formAtom = atom<Form>({
   name: "",
   email: "",
   phone: "",
-  plan: "arcade",
+  plan: undefined,
   yearlyBilling: false,
 })
 

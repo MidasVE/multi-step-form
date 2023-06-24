@@ -8,7 +8,7 @@ export default function ButtonGroup({
   nextButton,
 }: ButtonGroupProps) {
   return (
-    <div className="mt-auto flex items-center justify-between">
+    <div className="fixed bottom-0 left-0 mt-auto flex w-full items-center justify-between bg-white p-4 md:static md:p-0">
       {backButton}
       {nextButton}
     </div>

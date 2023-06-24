@@ -39,7 +39,7 @@ export default function Navigation() {
 
   return (
     <nav>
-      <ul className="space-y-6 text-sm text-primary-foreground">
+      <ul className="flex justify-center gap-4 text-sm text-primary-foreground md:block md:space-y-6">
         {navItems.map((item, index) => (
           <li key={item.title} className="flex items-center gap-3">
             <Link
@@ -52,7 +52,7 @@ export default function Navigation() {
             >
               {index + 1}
             </Link>
-            <div className="flex flex-col uppercase">
+            <div className="hidden flex-col uppercase md:flex">
               <span className="text-xs font-thin">Step {index + 1}</span>
               <span className="font-semibold tracking-wider">{item.title}</span>
             </div>

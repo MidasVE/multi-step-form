@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAtom } from "jotai"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -45,7 +45,7 @@ export default function SelectPlanForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-1 flex-col gap-6"
+        className="flex flex-1 flex-col gap-2 md:gap-6"
       >
         <FormField
           control={form.control}
@@ -57,7 +57,7 @@ export default function SelectPlanForm() {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="grid grid-cols-1 gap-6 lg:grid-cols-3"
+                  className="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-6"
                 >
                   {Array.from(planPricing.entries()).map(([key, value]) => (
                     <FormItem key={key}>
@@ -70,14 +70,14 @@ export default function SelectPlanForm() {
                           />
                         </FormControl>
                         <Card className="cursor-pointer border hover:border-primary">
-                          <CardContent className="p-4">
+                          <CardContent className="flex gap-4 p-4 lg:flex-col lg:gap-8">
                             <Image
                               src={`/icon-${key}.svg`}
                               width={40}
                               height={40}
                               alt={key}
                             />
-                            <div className="flex flex-col gap-2 pt-8">
+                            <div className="flex flex-col gap-2">
                               <span className="font-bold">{value.name}</span>
                               {yearlyBillingValue ? (
                                 <>

@@ -45,7 +45,7 @@ export const PersonalInfoForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-1 flex-col gap-6"
+        className="flex flex-1 flex-col gap-2 md:gap-6"
       >
         <FormField
           control={form.control}

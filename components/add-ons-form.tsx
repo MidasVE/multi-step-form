@@ -53,7 +53,7 @@ export default function AddOnsForm() {
   return (
     <Form {...form}>
       <form
-        className="flex flex-1 flex-col gap-4"
+        className="flex flex-1 flex-col gap-2 md:gap-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         {Array.from(addOnPricing.entries()).map(([key, value]) => (
@@ -84,7 +84,7 @@ export default function AddOnsForm() {
                         </span>
                         <FormDescription>{value.description}</FormDescription>
                       </div>
-                      <span className="ml-auto text-accent">
+                      <span className="ml-auto shrink-0 text-accent">
                         {rest.yearlyBilling
                           ? `+ €${value.price.yearly}/yr`
                           : `+ €${value.price.monthly}/mo`}

@@ -80,7 +80,7 @@
   }
 
   h1 {
-    @apply text-3xl font-bold text-primary mb-4;
+    @apply text-2xl md:text-3xl font-bold text-primary mb-4;
   }
 }
 

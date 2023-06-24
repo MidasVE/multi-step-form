@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Page() {
   return (
-    <div className="my-auto flex -translate-y-8 flex-col items-center gap-4 text-center">
+    <div className="my-auto flex flex-col items-center gap-4 text-center md:-translate-y-8">
       <Image
         src="/icon-thank-you.svg"
         width={80}
